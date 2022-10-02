@@ -1,0 +1,21 @@
+<?php $order = $block->getOrder(); ?>
+<?php if ($order) : ?>
+    <section class="admin__page-section order-additional-information">
+        <div class="admin__page-section-title">
+            <strong class="title"><?php echo /* @escapeNotVerified */ __('Customer Order Comment'); ?></strong>
+        </div>
+        <div id="<?php echo $block->getHtmlId() ?>"
+             class="admin__page-section-content order-additional-information-container">
+            <div class="admin__page-section-item order-information">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-information-table">
+                        <tr>
+                            <th>Details</th>
+                            <td><?php echo $order->getOrderComment(); ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
