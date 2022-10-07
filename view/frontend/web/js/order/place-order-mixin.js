@@ -32,16 +32,22 @@ define([
             var url = urlFormatter.build('raficustom/quote/save');
 
             var orderComment = $('[name="order_comment"]').val();
+            var orderRegion = $('[name="order_region"]').val();
 
             if (orderComment) {
 
                 var payload = {
                     'cartId': quoteId,
                     'order_comment': orderComment,
+                    'order_region': orderRegion,
                     'is_customer': isCustomer
                 };
 
                 if (!payload.order_comment) {
+                    return true;
+                }
+
+                if (!payload.order_region) {
                     return true;
                 }
 

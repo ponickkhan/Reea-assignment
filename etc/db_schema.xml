@@ -2,8 +2,19 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="quote" resource="default" engine="innodb">
         <column xsi:type="varchar" name="order_comment" nullable="true" comment="Order Comment" length="255"/>
+        <column xsi:type="varchar" name="order_region" nullable="true" comment="Order Region" length="255"/>
     </table>
     <table name="sales_order" resource="default" engine="innodb">
         <column xsi:type="varchar" name="order_comment" nullable="true" comment="Order Comment" length="255"/>
+        <column xsi:type="varchar" name="order_region" nullable="true" comment="Order Region" length="255"/>
+    </table>
+    <table name="rafi_reea_region" resource="default" engine="innodb" comment="rafi_reea_region Table">
+        <column xsi:type="int" name="region_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="region_id"/>
+        </constraint>
+        <column name="title" nullable="true" xsi:type="varchar" comment="title" length="255"/>
+        <column name="description" nullable="true" xsi:type="text" comment="description"/>
+        <column name="status" nullable="true" xsi:type="boolean" comment="status"/>
     </table>
 </schema>

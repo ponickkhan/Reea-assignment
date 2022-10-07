@@ -1,4 +1,4 @@
-# Test Assignment Module for Reea Digital Assignment
+# Test Assignment Module for Reea Digital
 
     ``Rafi/Reea``
 
@@ -14,6 +14,12 @@
 - Show that information in admin order details page
 - Show that in frontend customer order details page
 - Check compatibility with with latest magento release [2.4.5]
+- There will be a option "Region" in admin dashboard where admin user can create , update ,delete regions
+- Region will have 3 field title , description and status
+- These region will appear as a dropdown option in user account , for both front end and admin
+- it will also appear in checkout as a drop-down option and existing value as selected option . this field also need to be saved in order level
+- A widget , that will have a  select option where admin can pick a category .this widget will display all subcategories of that specific category in a 3 column grid
+
 ## Installation
 \* = in production please use the `--keep-generated` option
 

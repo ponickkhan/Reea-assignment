@@ -26,7 +26,8 @@ class Save extends \Magento\Framework\App\Action\Action
         $post = $this->getRequest()->getPostValue();
         if ($post) {
             $cartId       = $post['cartId'];
-            $deliveryDate = $post['order_comment'];
+            $orderComment = $post['order_comment'];
+            $orderRegion = $post['order_region'];
             $loggin       = $post['is_customer'];
 
             if ($loggin === 'false') {
@@ -38,7 +39,8 @@ class Save extends \Magento\Framework\App\Action\Action
                 throw new NoSuchEntityException(__('Cart %1 doesn\'t contain products', $cartId));
             }
 
-            $quote->setData('order_comment', $deliveryDate);
+            $quote->setData('order_comment', $orderComment);
+            $quote->setData('order_region', $orderRegion);
             $this->quoteRepository->save($quote);
         }
     }

@@ -8,5 +8,6 @@ class SaveToOrder implements \Magento\Framework\Event\ObserverInterface
         $quote = $event->getQuote();
         $order = $event->getOrder();
         $order->setData('order_comment', $quote->getData('order_comment'));
+        $order->setData('order_region', $quote->getData('order_region'));
     }
 }

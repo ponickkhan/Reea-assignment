@@ -1,0 +1,7 @@
+<?php
+$obj = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $obj->create('Rafi\Reea\Helper\Data');
+$region = $helper->getRegion($block->getCustomer()->getCustomAttribute('customer_region')->getValue());
+?>
+
+<p><strong>Region: </strong> <?= $region->getTitle() ?></p>
