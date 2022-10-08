@@ -2,14 +2,20 @@
 namespace Rafi\Reea\Plugin\Checkout;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
-
+use Rafi\Reea\Helper\Data;
+use Magento\Customer\Model\Session;
 class LayoutProcessorPlugin
 {
     protected $customerRepository;
     public function __construct(
-        CustomerRepositoryInterface $customerRepository)
+        CustomerRepositoryInterface $customerRepository,
+        Data $helper,
+        Session $customerSession
+    )
     {
         $this->customerRepository = $customerRepository;
+        $this->helper = $helper;
+        $this->customerSession = $customerSession;
     }
     public function getAttributeValue($customerId)
     {
@@ -25,9 +31,6 @@ class LayoutProcessorPlugin
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         array  $jsLayout
     ) {
-        $obj = \Magento\Framework\App\ObjectManager::getInstance();
-        $helper = $obj->create('Rafi\Reea\Helper\Data');
-        $customerSession = $obj->get('Magento\Customer\Model\Session');
 
         $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['before-form']['children']['order_comment'] = [
@@ -49,11 +52,10 @@ class LayoutProcessorPlugin
         ];
 
 
-        $regions = $helper->getCollection();
-
-        if($customerSession->isLoggedIn()) {
-            $currentRegion = $this->getAttributeValue($customerSession->getCustomer()->getId());
-            $regionData = $helper->getRegion($currentRegion->getValue());
+        $regions = $this->helper->getCollection();
+        if($this->customerSession->isLoggedIn()) {
+            $currentRegion = $this->getAttributeValue($this->customerSession->getCustomer()->getId());
+            $regionData = $this->helper->getRegion($currentRegion->getValue());
             if ($regionData->getTitle() !== null){
                 $option[] = ['value'=> $currentRegion->getValue(),'label'=> $regionData->getTitle() ];
             }
@@ -85,8 +87,6 @@ class LayoutProcessorPlugin
             'sortOrder' => 200,
             'id' => 'order_region'
         ];
-
-
 
         return $jsLayout;
     }

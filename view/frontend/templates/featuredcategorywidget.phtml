@@ -17,7 +17,7 @@ $_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
                         $_imgHtml = '<img src="' . $_imgUrl . '" height="350px" width="350px"/>';
                         $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
                     }else{
-                        $_imgHtml = '<img src="https://via.placeholder.com/350"/>';
+                        $_imgHtml = '<img src="https://via.placeholder.com/350" height="350px" width="350px"/>';
                     } ?>
                     <a href="<?= /* @escapeNotVerified */ $_category->getUrl() ?>" class="product photo product-item-photo">
                         <?php echo $_imgHtml ?>
